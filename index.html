@@ -87,7 +87,7 @@
     <div class="ambient-light" style="top: -100px; left: -100px;"></div>
     <div class="ambient-light" style="bottom: -100px; right: -100px; animation-delay: -5s;"></div>
 
-    <div class="max-w-md w-full text-center mb-8">
+    <div class="max-w-6xl w-full text-center mb-8">
         <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-2xl shadow-2xl mb-4 transform rotate-3">
             <i data-lucide="wallet" class="w-8 h-8 text-white"></i>
         </div>
@@ -96,7 +96,7 @@
         <p class="text-slate-400">Alexandre Nicolas Fernandez Puig</p>
     </div>
 
-    <main class="max-w-md w-full glass-card rounded-[2.5rem] overflow-hidden">
+    <main class="max-w-6xl w-full glass-card rounded-[2.5rem] overflow-hidden">
         
         <!-- Bloque de Copiar Todo -->
         <div class="p-8 pb-4">
@@ -107,71 +107,71 @@
             <p class="text-[10px] text-slate-500 text-center mt-3 uppercase tracking-widest font-semibold">O copia los datos individualmente abajo</p>
         </div>
 
-        <div class="px-8 pb-8 space-y-4">
+        <div class="px-8 pb-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
             <!-- Nombre -->
-            <div class="space-y-1">
-                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Titular</label>
-                <div class="flex items-center justify-between item-row p-3.5 rounded-xl">
-                    <span class="text-white font-medium" id="name">Alexandre Nicolas Fernandez Puig</span>
+            <div class="item-row p-4 rounded-xl">
+                <div class="flex items-center justify-between mb-2">
+                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Titular</label>
                     <button onclick="copyToClipboard('name')" class="text-slate-400 hover:text-white p-2">
                         <i data-lucide="copy" class="w-4 h-4"></i>
                     </button>
                 </div>
+                <span class="text-white font-medium" id="name">Alexandre Nicolas Fernandez Puig</span>
             </div>
 
             <!-- RUT -->
-            <div class="space-y-1">
-                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">RUT</label>
-                <div class="flex items-center justify-between item-row p-3.5 rounded-xl">
-                    <span class="text-white font-medium" id="rut">17.948.119-7</span>
+            <div class="item-row p-4 rounded-xl">
+                <div class="flex items-center justify-between mb-2">
+                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">RUT</label>
                     <button onclick="copyToClipboard('rut')" class="text-slate-400 hover:text-white p-2">
                         <i data-lucide="copy" class="w-4 h-4"></i>
                     </button>
                 </div>
+                <span class="text-white font-medium" id="rut">17.948.119-7</span>
             </div>
 
             <!-- Banco -->
-            <div class="space-y-1">
-                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Banco</label>
-                <div class="flex items-center justify-between item-row p-3.5 rounded-xl">
-                    <span class="text-white font-medium" id="bank">Banco Santander</span>
+            <div class="item-row p-4 rounded-xl">
+                <div class="flex items-center justify-between mb-2">
+                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Banco</label>
                     <button onclick="copyToClipboard('bank')" class="text-slate-400 hover:text-white p-2">
                         <i data-lucide="copy" class="w-4 h-4"></i>
                     </button>
                 </div>
+                <span class="text-white font-medium" id="bank">Banco Santander</span>
             </div>
 
             <!-- Tipo de Cuenta -->
-            <div class="space-y-1">
-                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Tipo de Cuenta</label>
-                <div class="flex items-center justify-between item-row p-3.5 rounded-xl">
-                    <span class="text-white font-medium" id="account-type">Cuenta Corriente</span>
+            <div class="item-row p-4 rounded-xl">
+                <div class="flex items-center justify-between mb-2">
+                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Tipo de Cuenta</label>
                     <button onclick="copyToClipboard('account-type')" class="text-slate-400 hover:text-white p-2">
                         <i data-lucide="copy" class="w-4 h-4"></i>
                     </button>
                 </div>
+                <span class="text-white font-medium" id="account-type">Cuenta Corriente</span>
             </div>
 
             <!-- Número de Cuenta -->
-            <div class="space-y-1">
-                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Número de Cuenta</label>
-                <div class="flex items-center justify-between item-row p-3.5 rounded-xl bg-blue-500/5 border-blue-500/10">
-                    <span class="text-blue-400 font-mono font-bold tracking-wider" id="account-num">000095826725</span>
+            <div class="item-row p-4 rounded-xl bg-blue-500/5 border-blue-500/10">
+                <div class="flex items-center justify-between mb-2">
+                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Número de Cuenta</label>
                     <button onclick="copyToClipboard('account-num')" class="text-blue-400 hover:text-white p-2">
                         <i data-lucide="copy" class="w-4 h-4"></i>
                     </button>
                 </div>
+                <span class="text-blue-400 font-mono font-bold tracking-wider" id="account-num">000095826725</span>
             </div>
 
             <!-- Email -->
-            <div class="space-y-1">
-                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Email</label>
-                <div class="flex items-center justify-between item-row p-3.5 rounded-xl">
-                    <span class="text-white font-medium truncate mr-2 text-sm" id="email">Alexandre.fernandez@outlook.com</span>
+            <div class="item-row p-4 rounded-xl">
+                <div class="flex items-center justify-between mb-2">
+                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Email</label>
                     <button onclick="copyToClipboard('email')" class="text-slate-400 hover:text-white p-2">
                         <i data-lucide="copy" class="w-4 h-4"></i>
                     </button>
                 </div>
+                <span class="text-white font-medium break-all text-sm" id="email">Alexandre.fernandez@outlook.com</span>
             </div>
         </div>
 
