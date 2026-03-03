@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Datos de transferencia</title>
+  <style>
+    :root {
+      --bg: #f6f8f7;
+      --card: #ffffff;
+      --text: #14201a;
+      --muted: #5d6d64;
+      --line: #e5ece8;
+      --accent: #2e9f68;
+      --accent-dark: #248457;
+      --accent-soft: #eef9f2;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+    }
+    .wrap { width: 100%; max-width: 760px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 10px 28px rgba(20,32,26,0.05);
+      overflow: hidden;
+    }
+    .head {
+      padding: 18px 18px 12px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #fff, #f9fffb);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--muted);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+      margin-bottom: 10px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      display: inline-block;
+    }
+    h1 { margin: 0; font-size: 1.15rem; line-height: 1.25; }
+    .sub { margin-top: 6px; color: var(--muted); font-size: 0.92rem; }
+
+    .main-box {
+      margin: 14px;
+      border: 1px solid #d7ebe0;
+      background: var(--accent-soft);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .main-label {
+      color: #3b5b49;
+      font-size: 0.82rem;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    textarea {
+      width: 100%;
+      min-height: 150px;
+      border: 1px solid #cde5d8;
+      border-radius: 10px;
+      background: #fff;
+      padding: 10px;
+      font: inherit;
+      color: var(--text);
+      resize: vertical;
+      line-height: 1.35;
+    }
+    .main-actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      appearance: none;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      padding: 10px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.93rem;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--accent-dark); }
+    .btn-secondary {
+      background: #fff;
+      color: var(--text);
+      border-color: var(--line);
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+    }
+
+    .detail-wrap {
+      padding: 0 14px 14px;
+    }
+    .detail-title {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 2px 2px 8px;
+    }
+    .row {
+      display: grid;
+      grid-template-columns: 130px 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 8px;
+      border-bottom: 1px solid var(--line);
+    }
+    .row:last-child { border-bottom: 0; }
+    .k {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .v {
+      font-weight: 600;
+      font-size: 0.95rem;
+      word-break: break-word;
+    }
+
+    .hint {
+      margin: 0 14px 14px;
+      font-size: 0.84rem;
+      color: var(--muted);
+      background: #fafdfb;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: #0f172a;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: .9rem;
+      opacity: 0;
+      transition: opacity .2s ease, transform .2s ease;
+      pointer-events: none;
+      max-width: calc(100vw - 24px);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-4px);
+    }
+
+    @media (max-width: 620px) {
+      .row {
+        grid-template-columns: 1fr;
+        align-items: start;
+        gap: 6px;
+      }
+      .row .btn-secondary {
+        justify-self: start;
+      }
+      .main-actions button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="head">
+        <div class="badge"><span class="dot"></span> Datos de transferencia</div>
+        <h1>Transferencia bancaria</h1>
+        <div class="sub">Usa el botón principal para copiar el formato compatible con apps bancarias.</div>
+      </div>
+
+      <div class="main-box">
+        <div class="main-label">Texto tipo app bancaria (estilo WhatsApp)</div>
+        <textarea id="appText">- Alexandre Nicolas Fernandez Puig
+- 17.948.119-7
+- Banco Santander
+- cuenta corriente
+- N° 000095826725
+- Alexandre.fernandez@outlook.com</textarea>
+        <div class="main-actions">
+          <button class="btn-primary" onclick="copyMain()">📋 Copiar</button>
+        </div>
+      </div>
+
+      <div class="detail-wrap">
+        <div class="detail-title">Detalle (por si necesitas copiar campos por separado)</div>
+
+        <div class="row">
+          <div class="k">Nombre</div>
+          <div class="v" id="val-name">Alexandre Nicolas Fernandez Puig</div>
+          <button class="btn-secondary" onclick="copyField('name')">Copiar</button>
+        </div>
+
+        <div class="row">
+          <div class="k">RUT</div>
+          <div class="v" id="val-rut">17.948.119-7</div>
+          <button class="btn-secondary" onclick="copyField('rut')">Copiar</button>
+        </div>
+
+        <div class="row">
+          <div class="k">Banco</div>
+          <div class="v" id="val-bank">Banco Santander</div>
+          <button class="btn-secondary" onclick="copyField('bank')">Copiar</button>
+        </div>
+
+        <div class="row">
+          <div class="k">Tipo de cuenta</div>
+          <div class="v" id="val-type">cuenta corriente</div>
+          <button class="btn-secondary" onclick="copyField('type')">Copiar</button>
+        </div>
+
+        <div class="row">
+          <div class="k">N° de cuenta</div>
+          <div class="v" id="val-account">000095826725</div>
+          <button class="btn-secondary" onclick="copyField('account')">Copiar</button>
+        </div>
+
+        <div class="row">
+          <div class="k">Email</div>
+          <div class="v" id="val-email">Alexandre.fernandez@outlook.com</div>
+          <button class="btn-secondary" onclick="copyField('email')">Copiar</button>
+        </div>
+      </div>
+
+      <div class="hint">
+        Si el botón no copia en iPhone, normalmente es porque la página no está en <strong>HTTPS</strong> o el navegador bloquea el portapapeles. En ese caso, el texto se seleccionará para copiar manualmente.
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  
+<script>
+  const DATA = {
+    name: `Alexandre Nicolas Fernandez Puig`,
+    rut: `17.948.119-7`,
+    bank: `Banco Santander`,
+    type: `cuenta corriente`,
+    account: `000095826725`,
+    email: `Alexandre.fernandez@outlook.com`
+  };
+
+  function isSecurePage() {
+    return window.isSecureContext || location.protocol === 'https:';
+  }
+
+  function selectElementText(el) {
+    el.focus();
+    el.removeAttribute('readonly');
+    el.setSelectionRange(0, el.value.length);
+  }
+
+  function copyViaHiddenTextarea(text) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.top = '0';
+    ta.style.left = '-9999px';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+
+    // iOS Safari tends to work better when focused+selected explicitly
+    ta.focus();
+    ta.select();
+    ta.setSelectionRange(0, ta.value.length);
+
+    let ok = false;
+    try {
+      ok = document.execCommand('copy');
+    } catch (e) {
+      ok = false;
+    }
+
+    if (!ok) {
+      // Leave selection if needed? We'll remove and use visible fallback instead
+    }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  async function doCopy(text, msg) {
+    // Try modern API first (works only in secure contexts and allowed browsers)
+    if (navigator.clipboard && isSecurePage()) {
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast(msg || "✅ Copiado");
+        return true;
+      } catch (e) {
+        // continue to fallback
+      }
+    }
+
+    // Fallback for many browsers
+    if (copyViaHiddenTextarea(text)) {
+      showToast(msg || "✅ Copiado");
+      return true;
+    }
+
+    // Final fallback: put text into main textarea and select it for manual copy
+    const area = document.getElementById('appText');
+    area.value = text;
+    selectElementText(area);
+    showToast("⚠️ No se pudo copiar automático. Mantén presionado y copia.");
+    return false;
+  }
+
+  function copyMain() {
+    const txt = document.getElementById('appText').value;
+    doCopy(txt, "✅ Copiado (formato app bancaria)");
+  }
+
+  function copyField(key) {
+    doCopy(DATA[key], "✅ Copiado");
+  }
+
+  let toastTimer;
+  function showToast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove('show'), 2400);
+  }
+</script>
+
+</body>
+</html>
